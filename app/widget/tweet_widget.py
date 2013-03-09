@@ -6,6 +6,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from app import constant
 from app import logger
+from app import thread_pool
 
 log = logger.getLogger(__name__)
 
@@ -56,9 +57,7 @@ class PictureTask(QRunnable):
             print(e)
 
 # Global instance of thread pool
-g_thread_pool = QThreadPool.globalInstance()
-g_thread_pool.setMaxThreadCount(6)
-#g_thread_pool.setExpiryTimeout(-1)              # Threads never expire
+g_thread_pool = thread_pool.ThreadPool(6)
 
 class TweetWidget(QWidget):
     '''
